@@ -12,7 +12,7 @@ and add
 127.0.0.1 chat.local
 ```
 
-Create certificates
+Create certificates (be patience this'll take several minutes)
 
     ./initialise-keys-and-certificates.sh
 
