@@ -33,7 +33,11 @@ Through the UI set up administrator account.  In the settings you can set
   * -> allow message editing / deleting - default is true
   * work black list configuration
 * LDAP -> user / credentials configuration
-  
+* Accounts > Iframe -> enable iframe support - default is false
+
+# Embedding in web site
+
+See web directly for embedding chat in a web site
 
 # View chat database
 

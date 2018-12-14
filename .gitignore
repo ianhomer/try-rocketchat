@@ -5,6 +5,10 @@
 
 build
 
+# Node
+
+node_modules
+
 # Rocket.Chat
 
 data
