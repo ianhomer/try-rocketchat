@@ -1,2 +1,10 @@
 # IDEA
 .idea/workspace.xml
+
+# Gradle
+
+build
+
+# Rocket.Chat
+
+data

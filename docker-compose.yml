@@ -1,0 +1,43 @@
+version: "3"
+services:
+  nginx:
+    container_name: chat-nginx
+    build: ./nginx
+    ports:
+      - "443:443"
+
+  db:
+    container_name: chat-db
+    image: mongo
+    volumes:
+      - ./data/runtime/db:/data/db
+      - ./data/dump:/dump
+    command: mongod --smallfiles
+
+  chat:
+    container_name: chat-chat
+    image: rocketchat/rocket.chat:latest
+    environment:
+      - MONGO_URL=mongodb://db:27017/rocketchat
+      - ROOT_URL=https://chat.local
+      - Accounts_UseDNSDomainCheck=True
+    links:
+      - db:db
+    ports:
+      - 3000:3000
+
+  hubot:
+    container_name: chat-hubot
+    image: rocketchat/hubot-rocketchat:latest
+    environment:
+      - ROCKETCHAT_URL=127.0.0.1:3000
+      - ROCKETCHAT_ROOM=GENERAL
+      - ROCKETCHAT_USER=Botname
+      - ROCKETCHAT_PASSWORD=BotPassw0rd
+      - BOT_NAME=Botname
+      - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-greetings
+    links:
+      - chat:chat
+    # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
+    ports:
+      - 3001:8080
