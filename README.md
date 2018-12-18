@@ -55,6 +55,16 @@ View all messages
 
     db.rocketchat_message.find({})
 
-View all rooms
+View all rooms, roles
 
     db.rocketchat_room.find({})
+    db.rocketchat_roles.find({})
+    db.users.find({})
+
+# Clean reinstall
+
+    docker-compose down
+    docker container prune
+    rm -Rf ./data/
+    docker-compose up -d
+    

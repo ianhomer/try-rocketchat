@@ -5,6 +5,8 @@ services:
     build: ./nginx
     ports:
       - "443:443"
+    depends_on:
+      - chat
 
   db:
     container_name: chat-db
@@ -25,6 +27,8 @@ services:
       - db:db
     ports:
       - 3000:3000
+    depends_on:
+      - db
 
   hubot:
     container_name: chat-hubot
